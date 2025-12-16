@@ -11,36 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Poppins', sans-serif; }
-        
-        /* Grade-based themes */
         .theme-young { --primary: #10b981; --secondary: #f59e0b; --bg: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%); }
         .theme-middle { --primary: #8b5cf6; --secondary: #06b6d4; --bg: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%); }
         .theme-senior { --primary: #3b82f6; --secondary: #6366f1; --bg: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%); }
-        
         .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
         .glass-dark { background: rgba(0,0,0,0.2); backdrop-filter: blur(10px); }
-        
-        /* Animations */
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 40px rgba(255,255,255,0.6); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
         @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
         .float { animation: float 3s ease-in-out infinite; }
         .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
         .shake { animation: shake 0.5s ease-in-out; }
         .pop { animation: pop 0.3s ease-in-out; }
         .slide-in { animation: slideIn 0.5s ease-out forwards; }
-        
-        /* Progress bar */
         .progress-ring { transform: rotate(-90deg); }
-        
-        /* Gamification elements */
         .star { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
         .badge { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
-        
-        /* Roadmap styles */
         .roadmap-node { position: relative; }
         .roadmap-node::before { content: ''; position: absolute; left: 50%; top: 100%; width: 4px; height: 30px; background: rgba(255,255,255,0.3); transform: translateX(-50%); }
         .roadmap-node:last-child::before { display: none; }
@@ -86,17 +74,14 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <!-- XP Points -->
                         <div class="glass-dark px-3 py-1 rounded-full flex items-center gap-1">
                             <span class="text-yellow-400">⭐</span>
                             <span class="text-white text-sm font-bold" id="xp-points">0 XP</span>
                         </div>
-                        <!-- Streak -->
                         <div class="glass-dark px-3 py-1 rounded-full flex items-center gap-1">
                             <span class="text-orange-400">🔥</span>
                             <span class="text-white text-sm font-bold" id="streak">0</span>
                         </div>
-                        <!-- Progress Button -->
                         <button onclick="showDashboard()" class="glass-dark px-3 py-1 rounded-full text-white text-sm hover:bg-white/20 transition">
                             📊 Progress
                         </button>
@@ -128,7 +113,6 @@
             
             <!-- LESSON TAB -->
             <div id="tab-lesson" class="tab-content">
-                <!-- Progress Bar -->
                 <div class="mb-6">
                     <div class="flex justify-between text-white/70 text-sm mb-2">
                         <span>Lesson Progress</span>
@@ -138,23 +122,11 @@
                         <div id="progress-bar" class="h-full bg-gradient-to-r from-green-400 to-cyan-400 rounded-full transition-all duration-500" style="width: 0%"></div>
                     </div>
                 </div>
-
-                <!-- Section Content -->
-                <div id="section-content" class="glass rounded-3xl p-6 md:p-8 border border-white/20 slide-in">
-                    <!-- Dynamic content -->
-                </div>
-
-                <!-- Navigation -->
+                <div id="section-content" class="glass rounded-3xl p-6 md:p-8 border border-white/20 slide-in"></div>
                 <div class="flex justify-between mt-6">
-                    <button id="prev-btn" onclick="prevSection()" class="px-6 py-3 glass text-white rounded-xl border border-white/20 hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">
-                        ← Previous
-                    </button>
-                    <button id="next-btn" onclick="nextSection()" class="px-6 py-3 bg-gradient-to-r from-green-400 to-cyan-400 text-white rounded-xl font-bold hover:scale-105 transition">
-                        Next →
-                    </button>
+                    <button id="prev-btn" onclick="prevSection()" class="px-6 py-3 glass text-white rounded-xl border border-white/20 hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">← Previous</button>
+                    <button id="next-btn" onclick="nextSection()" class="px-6 py-3 bg-gradient-to-r from-green-400 to-cyan-400 text-white rounded-xl font-bold hover:scale-105 transition">Next →</button>
                 </div>
-
-                <!-- Fun Facts (Grade 1-8) -->
                 <div id="fun-facts" class="mt-6 glass rounded-2xl p-5 border border-yellow-400/30 bg-yellow-400/10">
                     <h4 class="text-yellow-300 font-bold mb-3 flex items-center gap-2">💡 Did You Know?</h4>
                     <ul id="facts-list" class="space-y-2 text-white/80"></ul>
@@ -171,31 +143,22 @@
                             <span id="quiz-difficulty" class="px-3 py-1 rounded-full text-sm font-bold bg-green-500/30 text-green-300">Easy</span>
                         </div>
                     </div>
-                    
                     <div id="quiz-container">
                         <div id="quiz-questions"></div>
-                        <button id="submit-quiz" onclick="submitQuiz()" class="w-full py-4 bg-gradient-to-r from-green-400 to-cyan-400 text-white rounded-xl font-bold text-lg hover:scale-105 transition mt-6 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                            Submit Answers ✓
-                        </button>
+                        <button id="submit-quiz" onclick="submitQuiz()" class="w-full py-4 bg-gradient-to-r from-green-400 to-cyan-400 text-white rounded-xl font-bold text-lg hover:scale-105 transition mt-6 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Submit Answers ✓</button>
                     </div>
-                    
                     <div id="quiz-result" class="hidden text-center py-8">
                         <div id="result-emoji" class="text-6xl mb-4">🏆</div>
                         <div id="result-title" class="text-2xl font-bold text-white mb-2">Amazing!</div>
                         <div id="result-score" class="text-4xl font-bold text-yellow-400 mb-4">3/3</div>
                         <div id="result-xp" class="text-lg text-green-400 mb-6">+50 XP</div>
+                        <div id="email-status" class="text-sm text-white/60 mb-4"></div>
                         <div class="flex gap-3 justify-center">
-                            <button onclick="retryQuiz()" class="px-6 py-3 glass text-white rounded-xl border border-white/20 hover:bg-white/20 transition">
-                                🔄 Try Again
-                            </button>
-                            <button onclick="showTab('roadmap')" class="px-6 py-3 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-xl font-bold hover:scale-105 transition">
-                                📈 View Progress
-                            </button>
+                            <button onclick="retryQuiz()" class="px-6 py-3 glass text-white rounded-xl border border-white/20 hover:bg-white/20 transition">🔄 Try Again</button>
+                            <button onclick="showTab('roadmap')" class="px-6 py-3 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-xl font-bold hover:scale-105 transition">📈 View Progress</button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Adaptive Hint -->
                 <div id="adaptive-hint" class="hidden mt-4 glass rounded-2xl p-4 border border-blue-400/30 bg-blue-400/10">
                     <p class="text-blue-300 text-sm">💡 <span id="hint-text">Based on your answers, you might want to review the basics first.</span></p>
                 </div>
@@ -205,14 +168,10 @@
             <div id="tab-doubts" class="tab-content hidden">
                 <div class="glass rounded-3xl p-6 md:p-8 border border-white/20">
                     <h3 class="text-2xl font-bold text-white mb-6">❓ Ask Your Doubts</h3>
-                    
                     <div class="mb-6">
                         <textarea id="doubt-input" placeholder="Type your question here... I'll help you understand!" class="w-full h-32 bg-white/10 border border-white/20 rounded-xl p-4 text-white placeholder-white/50 focus:outline-none focus:border-white/40 resize-none"></textarea>
-                        <button onclick="submitDoubt()" class="mt-3 px-6 py-3 bg-gradient-to-r from-blue-400 to-purple-400 text-white rounded-xl font-bold hover:scale-105 transition">
-                            🚀 Get Answer
-                        </button>
+                        <button onclick="submitDoubt()" class="mt-3 px-6 py-3 bg-gradient-to-r from-blue-400 to-purple-400 text-white rounded-xl font-bold hover:scale-105 transition">🚀 Get Answer</button>
                     </div>
-                    
                     <div id="doubt-response" class="hidden glass-dark rounded-2xl p-5 border border-white/20">
                         <div class="flex items-start gap-3">
                             <span class="text-2xl">🤖</span>
@@ -225,13 +184,9 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Previous Doubts -->
                     <div id="previous-doubts" class="mt-6">
                         <h4 class="text-white/70 text-sm mb-3">Your Previous Questions</h4>
-                        <div id="doubts-list" class="space-y-2">
-                            <!-- Dynamic -->
-                        </div>
+                        <div id="doubts-list" class="space-y-2"></div>
                     </div>
                 </div>
             </div>
@@ -241,12 +196,8 @@
                 <div class="glass rounded-3xl p-6 md:p-8 border border-white/20">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-2xl font-bold text-white">🗺️ Your Learning Journey</h3>
-                        <button onclick="downloadPDF()" class="px-4 py-2 bg-gradient-to-r from-pink-400 to-red-400 text-white rounded-xl font-bold hover:scale-105 transition text-sm">
-                            📄 Download PDF
-                        </button>
+                        <button onclick="downloadPDF()" class="px-4 py-2 bg-gradient-to-r from-pink-400 to-red-400 text-white rounded-xl font-bold hover:scale-105 transition text-sm">📄 Download PDF</button>
                     </div>
-                    
-                    <!-- Overall Progress -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                         <div class="glass-dark rounded-2xl p-5 text-center">
                             <div class="text-4xl font-bold text-green-400" id="concepts-learned">0</div>
@@ -261,25 +212,16 @@
                             <div class="text-white/70 text-sm">Average Score</div>
                         </div>
                     </div>
-                    
-                    <!-- Visual Roadmap -->
                     <div id="roadmap-visual" class="relative py-8">
                         <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-white/20 -translate-x-1/2"></div>
-                        <div id="roadmap-nodes" class="space-y-8">
-                            <!-- Dynamic nodes -->
-                        </div>
+                        <div id="roadmap-nodes" class="space-y-8"></div>
                     </div>
-                    
-                    <!-- Recommendations -->
                     <div class="mt-8 glass-dark rounded-2xl p-5 border border-green-400/30">
                         <h4 class="text-green-400 font-bold mb-3">🎯 Recommended Next Steps</h4>
-                        <ul id="recommendations" class="space-y-2 text-white/80">
-                            <!-- Dynamic -->
-                        </ul>
+                        <ul id="recommendations" class="space-y-2 text-white/80"></ul>
                     </div>
                 </div>
             </div>
-
         </main>
     </div>
 
@@ -290,8 +232,6 @@
                 <h2 class="text-2xl font-bold text-white">📊 Your Progress Report</h2>
                 <button onclick="closeDashboard()" class="text-white/50 hover:text-white text-2xl">&times;</button>
             </div>
-            
-            <!-- Student Info -->
             <div class="glass-dark rounded-2xl p-4 mb-6">
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-2xl">👤</div>
@@ -302,8 +242,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Stats Grid -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 <div class="glass-dark rounded-xl p-3 text-center">
                     <div class="text-2xl font-bold text-yellow-400" id="report-xp">0</div>
@@ -322,44 +260,33 @@
                     <div class="text-white/60 text-xs">Avg Score</div>
                 </div>
             </div>
-            
-            <!-- Performance Chart Placeholder -->
             <div class="glass-dark rounded-2xl p-4 mb-6">
                 <h4 class="text-white font-bold mb-4">📈 Quiz Performance</h4>
-                <div id="performance-bars" class="space-y-3">
-                    <!-- Dynamic bars -->
-                </div>
+                <div id="performance-bars" class="space-y-3"></div>
             </div>
-            
-            <!-- Strengths & Weaknesses -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div class="glass-dark rounded-2xl p-4">
                     <h4 class="text-green-400 font-bold mb-3">💪 Strengths</h4>
-                    <ul id="strengths-list" class="text-white/80 text-sm space-y-1">
-                        <li>• Quick learner</li>
-                    </ul>
+                    <ul id="strengths-list" class="text-white/80 text-sm space-y-1"><li>• Quick learner</li></ul>
                 </div>
                 <div class="glass-dark rounded-2xl p-4">
                     <h4 class="text-orange-400 font-bold mb-3">📚 Areas to Improve</h4>
-                    <ul id="improve-list" class="text-white/80 text-sm space-y-1">
-                        <li>• Practice more quizzes</li>
-                    </ul>
+                    <ul id="improve-list" class="text-white/80 text-sm space-y-1"><li>• Practice more quizzes</li></ul>
                 </div>
             </div>
-            
-            <!-- Download Button -->
-            <button onclick="downloadPDF()" class="w-full py-4 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl font-bold hover:scale-105 transition">
-                📄 Download as PDF
-            </button>
+            <button onclick="downloadPDF()" class="w-full py-4 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl font-bold hover:scale-105 transition">📄 Download as PDF</button>
         </div>
     </div>
 
     <script>
         // =============================================
-        // CONFIGURATION
+        // CONFIGURATION - UPDATE THIS WITH YOUR WEBHOOK URL!
         // =============================================
         const SUPABASE_URL = 'https://jnjbosuusrxhgybdtuov.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpuamJvc3V1c3J4aGd5YmR0dW92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0ODU1ODgsImV4cCI6MjA4MTA2MTU4OH0.-MoLuhm36XlnMSKrGoUUvg0aEhkx3MP0HvuPOiI_rhI';
+        
+        // ⚠️ IMPORTANT: Your n8n webhook URL
+        const WEBHOOK_URL = 'http://136.119.178.176:5678/webhook/quiz-completed';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -370,13 +297,7 @@
         let currentSection = 0;
         let quizAnswers = {};
         let quizSubmitted = false;
-        let studentData = {
-            xp: 0,
-            streak: 1,
-            conceptsLearned: [],
-            quizScores: [],
-            doubts: []
-        };
+        let studentData = { xp: 0, streak: 1, conceptsLearned: [], quizScores: [], doubts: [] };
 
         // =============================================
         // INITIALIZATION
@@ -384,47 +305,19 @@
         async function init() {
             const urlParams = new URLSearchParams(window.location.search);
             const lessonId = urlParams.get('id');
-
-            if (!lessonId) {
-                showError();
-                return;
-            }
+            if (!lessonId) { showError(); return; }
 
             try {
-                const { data, error } = await supabase
-                    .from('lessons')
-                    .select('*')
-                    .eq('lesson_id', lessonId)
-                    .single();
-
-                if (error || !data) {
-                    console.error('Lesson fetch error:', error);
-                    showError();
-                    return;
-                }
+                const { data, error } = await supabase.from('lessons').select('*').eq('lesson_id', lessonId).single();
+                if (error || !data) { console.error('Lesson fetch error:', error); showError(); return; }
 
                 lesson = data;
-                lesson.content = typeof data.content_json === 'string' 
-                    ? JSON.parse(data.content_json) 
-                    : data.content_json;
-
-                // Load student progress from localStorage
+                lesson.content = typeof data.content_json === 'string' ? JSON.parse(data.content_json) : data.content_json;
                 loadStudentData();
-                
-                // Apply grade-based theme
                 applyTheme(lesson.grade_level);
-                
-                // Mark as viewed
-                await supabase
-                    .from('lessons')
-                    .update({ is_viewed: true })
-                    .eq('lesson_id', lessonId);
-
+                await supabase.from('lessons').update({ is_viewed: true }).eq('lesson_id', lessonId);
                 renderLesson();
-            } catch (err) {
-                console.error('Init error:', err);
-                showError();
-            }
+            } catch (err) { console.error('Init error:', err); showError(); }
         }
 
         function showError() {
@@ -432,13 +325,9 @@
             document.getElementById('error').classList.remove('hidden');
         }
 
-        // =============================================
-        // THEME BASED ON GRADE
-        // =============================================
         function applyTheme(grade) {
             const body = document.getElementById('app-body');
             const mainContent = document.getElementById('main-content');
-            
             if (grade <= 5) {
                 body.classList.add('theme-young');
                 mainContent.style.background = 'linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)';
@@ -451,14 +340,9 @@
             }
         }
 
-        // =============================================
-        // LOCAL STORAGE
-        // =============================================
         function loadStudentData() {
             const saved = localStorage.getItem('nexusedu_progress');
-            if (saved) {
-                studentData = JSON.parse(saved);
-            }
+            if (saved) studentData = JSON.parse(saved);
             updateUI();
         }
 
@@ -472,27 +356,19 @@
             document.getElementById('streak').textContent = studentData.streak;
             document.getElementById('concepts-learned').textContent = studentData.conceptsLearned.length;
             document.getElementById('total-xp').textContent = studentData.xp;
-            
-            const avgScore = studentData.quizScores.length > 0 
-                ? Math.round(studentData.quizScores.reduce((a,b) => a+b, 0) / studentData.quizScores.length)
-                : 0;
+            const avgScore = studentData.quizScores.length > 0 ? Math.round(studentData.quizScores.reduce((a,b) => a+b, 0) / studentData.quizScores.length) : 0;
             document.getElementById('avg-score').textContent = avgScore + '%';
         }
 
-        // =============================================
-        // RENDER LESSON
-        // =============================================
         function renderLesson() {
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('main-content').classList.remove('hidden');
-
             document.getElementById('student-name').textContent = lesson.student_name || 'Student';
             document.getElementById('student-grade').textContent = lesson.grade_level || '-';
             document.getElementById('subject-name').textContent = lesson.subject || 'Subject';
             document.getElementById('topic-name').textContent = lesson.topic || 'Topic';
             document.getElementById('concept-title').textContent = lesson.concept || 'Concept';
 
-            // Fun facts
             const factsList = document.getElementById('facts-list');
             factsList.innerHTML = '';
             (lesson.content.funFacts || []).forEach(fact => {
@@ -500,7 +376,6 @@
                 li.textContent = '• ' + fact;
                 factsList.appendChild(li);
             });
-
             renderSection();
             renderQuiz();
             renderRoadmap();
@@ -513,47 +388,20 @@
 
             let visualHTML = '';
             if (grade <= 5) {
-                // Gamified for young learners
-                visualHTML = `
-                    <div class="flex justify-center my-6">
-                        <div class="text-8xl float">${getEmoji(lesson.subject)}</div>
-                    </div>
-                `;
+                visualHTML = `<div class="flex justify-center my-6"><div class="text-8xl float">${getEmoji(lesson.subject)}</div></div>`;
             } else if (grade <= 8) {
-                // Interactive for middle school
-                visualHTML = `
-                    <div class="flex justify-center my-6">
-                        <div class="glass-dark rounded-2xl p-6 text-center pulse-glow">
-                            <div class="text-5xl mb-2">${getEmoji(lesson.subject)}</div>
-                            <div class="text-white/70 text-sm">Click to explore!</div>
-                        </div>
-                    </div>
-                `;
+                visualHTML = `<div class="flex justify-center my-6"><div class="glass-dark rounded-2xl p-6 text-center pulse-glow"><div class="text-5xl mb-2">${getEmoji(lesson.subject)}</div><div class="text-white/70 text-sm">Click to explore!</div></div></div>`;
             } else {
-                // Structured for high school
-                visualHTML = `
-                    <div class="glass-dark rounded-xl p-4 my-4 border-l-4 border-blue-400">
-                        <div class="text-blue-400 text-sm font-bold mb-1">📌 Key Point</div>
-                        <div class="text-white/90">${section.title}</div>
-                    </div>
-                `;
+                visualHTML = `<div class="glass-dark rounded-xl p-4 my-4 border-l-4 border-blue-400"><div class="text-blue-400 text-sm font-bold mb-1">📌 Key Point</div><div class="text-white/90">${section.title}</div></div>`;
             }
 
-            container.innerHTML = `
-                <h3 class="text-2xl font-bold text-white mb-4">${section.title}</h3>
-                ${visualHTML}
-                <div class="text-white/90 text-lg leading-relaxed space-y-4">
-                    ${section.content.split('\n').map(p => `<p>${p}</p>`).join('')}
-                </div>
-            `;
+            container.innerHTML = `<h3 class="text-2xl font-bold text-white mb-4">${section.title}</h3>${visualHTML}<div class="text-white/90 text-lg leading-relaxed space-y-4">${section.content.split('\n').map(p => `<p>${p}</p>`).join('')}</div>`;
 
-            // Update progress
             const progress = ((currentSection + 1) / lesson.content.sections.length) * 100;
             document.getElementById('progress-bar').style.width = progress + '%';
             document.getElementById('progress-text').textContent = Math.round(progress) + '%';
-
-            // Update buttons
             document.getElementById('prev-btn').disabled = currentSection === 0;
+            
             const nextBtn = document.getElementById('next-btn');
             if (currentSection === lesson.content.sections.length - 1) {
                 nextBtn.textContent = 'Take Quiz! 🎯';
@@ -565,42 +413,21 @@
         }
 
         function getEmoji(subject) {
-            const emojis = {
-                'Math': '🔢', 'Mathematics': '📐',
-                'Science': '🔬', 'Physics': '⚛️',
-                'Chemistry': '🧪', 'Biology': '🧬',
-                'English': '📖', 'History': '🏛️',
-                'Geography': '🌍', 'Coding': '💻',
-                'Art': '🎨', 'Music': '🎵'
-            };
+            const emojis = { 'Math': '🔢', 'Mathematics': '📐', 'Science': '🔬', 'Physics': '⚛️', 'Chemistry': '🧪', 'Biology': '🧬', 'English': '📖', 'History': '🏛️', 'Geography': '🌍', 'Coding': '💻', 'Art': '🎨', 'Music': '🎵' };
             return emojis[subject] || '📚';
         }
 
-        // =============================================
-        // NAVIGATION
-        // =============================================
         function nextSection() {
-            if (currentSection < lesson.content.sections.length - 1) {
-                currentSection++;
-                renderSection();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            if (currentSection < lesson.content.sections.length - 1) { currentSection++; renderSection(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
         }
 
         function prevSection() {
-            if (currentSection > 0) {
-                currentSection--;
-                renderSection();
-            }
+            if (currentSection > 0) { currentSection--; renderSection(); }
         }
 
         function showTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-white', 'text-purple-900');
-                el.classList.add('glass', 'text-white/70');
-            });
-            
+            document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('bg-white', 'text-purple-900'); el.classList.add('glass', 'text-white/70'); });
             document.getElementById('tab-' + tabName).classList.remove('hidden');
             document.querySelector(`[data-tab="${tabName}"]`).classList.remove('glass', 'text-white/70');
             document.querySelector(`[data-tab="${tabName}"]`).classList.add('bg-white', 'text-purple-900');
@@ -614,7 +441,6 @@
             container.innerHTML = '';
             quizAnswers = {};
             quizSubmitted = false;
-            
             document.getElementById('quiz-container').classList.remove('hidden');
             document.getElementById('quiz-result').classList.add('hidden');
 
@@ -622,10 +448,7 @@
                 const qDiv = document.createElement('div');
                 qDiv.className = 'mb-6 slide-in';
                 qDiv.style.animationDelay = (qIndex * 0.1) + 's';
-                qDiv.innerHTML = `
-                    <p class="text-white font-medium mb-3">${qIndex + 1}. ${q.question}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2" id="q${qIndex}-options"></div>
-                `;
+                qDiv.innerHTML = `<p class="text-white font-medium mb-3">${qIndex + 1}. ${q.question}</p><div class="grid grid-cols-1 md:grid-cols-2 gap-2" id="q${qIndex}-options"></div>`;
                 container.appendChild(qDiv);
 
                 const optionsDiv = document.getElementById(`q${qIndex}-options`);
@@ -642,17 +465,11 @@
 
         function selectQuizAnswer(qIndex, oIndex) {
             if (quizSubmitted) return;
-            
             quizAnswers[qIndex] = oIndex;
-            
             document.querySelectorAll(`[id^="q${qIndex}-o"]`).forEach((btn, i) => {
-                btn.className = i === oIndex
-                    ? 'p-3 rounded-xl text-left transition-all bg-white text-purple-900 font-bold pop'
-                    : 'p-3 rounded-xl text-left transition-all glass text-white border border-white/20 hover:bg-white/20';
+                btn.className = i === oIndex ? 'p-3 rounded-xl text-left transition-all bg-white text-purple-900 font-bold pop' : 'p-3 rounded-xl text-left transition-all glass text-white border border-white/20 hover:bg-white/20';
             });
-
-            document.getElementById('submit-quiz').disabled = 
-                Object.keys(quizAnswers).length < lesson.content.quiz.length;
+            document.getElementById('submit-quiz').disabled = Object.keys(quizAnswers).length < lesson.content.quiz.length;
         }
 
         async function submitQuiz() {
@@ -684,10 +501,7 @@
             saveStudentData();
 
             // Update database
-            await supabase
-                .from('lessons')
-                .update({ quiz_score: score })
-                .eq('lesson_id', lesson.lesson_id);
+            await supabase.from('lessons').update({ quiz_score: score }).eq('lesson_id', lesson.lesson_id);
 
             // Show result
             document.getElementById('quiz-container').classList.add('hidden');
@@ -706,17 +520,51 @@
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }
 
+            // =============================================
+            // SEND TO N8N WEBHOOK FOR EMAIL REPORT
+            // =============================================
+            try {
+                document.getElementById('email-status').textContent = '📧 Sending report to your email...';
+                
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_email: lesson.student_email,
+                        student_name: lesson.student_name,
+                        grade_level: lesson.grade_level,
+                        subject: lesson.subject,
+                        topic: lesson.topic,
+                        concept: lesson.concept,
+                        lesson_id: lesson.lesson_id,
+                        quiz_score: score,
+                        quiz_total: total,
+                        xp_earned: xpEarned,
+                        total_xp: studentData.xp
+                    })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('email-status').textContent = '✅ Report sent to your email!';
+                    console.log('Quiz results sent to webhook successfully!');
+                } else {
+                    document.getElementById('email-status').textContent = '⚠️ Could not send email report';
+                    console.error('Webhook response not OK:', response.status);
+                }
+            } catch (err) {
+                document.getElementById('email-status').textContent = '⚠️ Could not send email report';
+                console.error('Webhook error:', err);
+            }
+            // =============================================
+
             // Show adaptive hint if needed
             if (score < total/2) {
                 document.getElementById('adaptive-hint').classList.remove('hidden');
-                document.getElementById('hint-text').textContent = 
-                    'Try reviewing the lesson again. Focus on the sections you found challenging!';
+                document.getElementById('hint-text').textContent = 'Try reviewing the lesson again. Focus on the sections you found challenging!';
             }
         }
 
-        function retryQuiz() {
-            renderQuiz();
-        }
+        function retryQuiz() { renderQuiz(); }
 
         // =============================================
         // DOUBTS
@@ -725,140 +573,20 @@
             const input = document.getElementById('doubt-input');
             const doubt = input.value.trim();
             if (!doubt) return;
-
-            // Simple AI response (in real app, call AI API)
             const response = generateDoubtResponse(doubt);
-            
             studentData.doubts.push({ question: doubt, answer: response, time: new Date().toISOString() });
             saveStudentData();
-
             document.getElementById('doubt-response').classList.remove('hidden');
             document.getElementById('doubt-answer').textContent = response;
             input.value = '';
-
             renderDoubts();
         }
 
         function generateDoubtResponse(doubt) {
-            // Placeholder - in production, call AI API
-            const responses = [
-                `Great question about ${lesson.concept}! The key thing to understand is that...`,
-                `I can see you're thinking deeply about this! Let me explain...`,
-                `This is a common question. The answer relates to what we learned about...`
-            ];
-            return responses[Math.floor(Math.random() * responses.length)] + 
-                   ` For more details, review the lesson sections above.`;
+            const responses = [`Great question about ${lesson.concept}! The key thing to understand is that...`, `I can see you're thinking deeply about this! Let me explain...`, `This is a common question. The answer relates to what we learned about...`];
+            return responses[Math.floor(Math.random() * responses.length)] + ` For more details, review the lesson sections above.`;
         }
 
         function renderDoubts() {
             const container = document.getElementById('doubts-list');
-            container.innerHTML = studentData.doubts.slice(-5).reverse().map(d => `
-                <div class="glass-dark rounded-xl p-3">
-                    <div class="text-white/70 text-sm">${d.question}</div>
-                </div>
-            `).join('');
-        }
-
-        function markHelpful(helpful) {
-            alert(helpful ? 'Thanks for the feedback! 😊' : 'Sorry to hear that. We\'ll improve! 📚');
-        }
-
-        // =============================================
-        // ROADMAP
-        // =============================================
-        function renderRoadmap() {
-            const container = document.getElementById('roadmap-nodes');
-            container.innerHTML = `
-                <div class="relative flex items-center justify-center">
-                    <div class="glass-dark rounded-2xl p-4 text-center w-48 border-2 border-green-400">
-                        <div class="text-2xl mb-1">🚩</div>
-                        <div class="text-white font-bold">Started</div>
-                        <div class="text-white/60 text-xs">${lesson.subject}</div>
-                    </div>
-                </div>
-                <div class="relative flex items-center justify-center">
-                    <div class="glass rounded-2xl p-4 text-center w-48 border-2 border-yellow-400 pulse-glow">
-                        <div class="text-2xl mb-1">📍</div>
-                        <div class="text-white font-bold">Current</div>
-                        <div class="text-white/60 text-xs">${lesson.concept}</div>
-                    </div>
-                </div>
-                <div class="relative flex items-center justify-center">
-                    <div class="glass-dark rounded-2xl p-4 text-center w-48 border-2 border-white/30">
-                        <div class="text-2xl mb-1">🎯</div>
-                        <div class="text-white font-bold">Next</div>
-                        <div class="text-white/60 text-xs">More concepts to explore!</div>
-                    </div>
-                </div>
-                <div class="relative flex items-center justify-center">
-                    <div class="glass-dark rounded-2xl p-4 text-center w-48 border-2 border-purple-400/50">
-                        <div class="text-2xl mb-1">🏆</div>
-                        <div class="text-white font-bold">Master</div>
-                        <div class="text-white/60 text-xs">${lesson.topic} Expert!</div>
-                    </div>
-                </div>
-            `;
-
-            // Recommendations
-            document.getElementById('recommendations').innerHTML = `
-                <li>• Complete the quiz to earn XP! 🎯</li>
-                <li>• Explore more concepts in ${lesson.topic} 📚</li>
-                <li>• Try a harder topic to level up! 🚀</li>
-            `;
-        }
-
-        // =============================================
-        // DASHBOARD & PDF
-        // =============================================
-        function showDashboard() {
-            document.getElementById('dashboard-modal').classList.remove('hidden');
-            
-            document.getElementById('report-name').textContent = lesson.student_name || 'Student';
-            document.getElementById('report-grade').textContent = 'Grade ' + (lesson.grade_level || '-');
-            document.getElementById('report-email').textContent = lesson.student_email || '';
-            document.getElementById('report-xp').textContent = studentData.xp;
-            document.getElementById('report-concepts').textContent = studentData.conceptsLearned.length;
-            document.getElementById('report-quizzes').textContent = studentData.quizScores.length;
-            
-            const avg = studentData.quizScores.length > 0 
-                ? Math.round(studentData.quizScores.reduce((a,b) => a+b, 0) / studentData.quizScores.length)
-                : 0;
-            document.getElementById('report-avg').textContent = avg + '%';
-
-            // Performance bars
-            const barsContainer = document.getElementById('performance-bars');
-            barsContainer.innerHTML = studentData.quizScores.slice(-5).map((score, i) => `
-                <div class="flex items-center gap-3">
-                    <span class="text-white/60 text-sm w-16">Quiz ${i + 1}</span>
-                    <div class="flex-1 h-4 bg-white/10 rounded-full overflow-hidden">
-                        <div class="h-full rounded-full ${score >= 70 ? 'bg-green-500' : score >= 40 ? 'bg-yellow-500' : 'bg-red-500'}" style="width: ${score}%"></div>
-                    </div>
-                    <span class="text-white font-bold w-12">${score}%</span>
-                </div>
-            `).join('') || '<p class="text-white/50 text-sm">No quizzes taken yet</p>';
-        }
-
-        function closeDashboard() {
-            document.getElementById('dashboard-modal').classList.add('hidden');
-        }
-
-        async function downloadPDF() {
-            const element = document.getElementById('pdf-content');
-            const opt = {
-                margin: 10,
-                filename: `NexusEdu_Progress_${lesson.student_name || 'Student'}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, backgroundColor: '#1e1b4b' },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            
-            html2pdf().set(opt).from(element).save();
-        }
-
-        // =============================================
-        // START
-        // =============================================
-        init();
-    </script>
-</body>
-</html>
+            container.innerHTML = studentData.doubts.slice(-5).reverse().map(d => `<div class="glass-dark rounded-xl p-3"><div class="text-white/70 text-sm">${d.question}</div>
